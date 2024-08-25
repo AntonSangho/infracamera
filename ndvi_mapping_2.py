@@ -3,8 +3,7 @@ import numpy as np
 from fastiecm import fastiecm
 
 #original = cv2.imread('/home/anton/Projects/infracamera/images/park.png') # 이미지 불러오기
-ndvi_contrasted = cv2.imread('/home/anton/Projects/infracamera/ndvi_contrasted.png') # 이미지 불러오기
-
+original = cv2.imread('/home/anton/Projects/infracamera/images/test_filter.png') # 이미지 불러오기
 def display(image, image_name): 
     image = np.array(image, dtype=float)/float(255) # array로 변환 후 0~1로 정규화 
     #shape = image.shape # 이미지 크기 저장
@@ -39,14 +38,14 @@ def calc_ndvi(image):
     return ndvi
     
 #display(original, 'original') # 원본 이미지 출력
-#contrasted = contrast_stretch(original) # 대비를 높인 이미지 생성
+contrasted = contrast_stretch(original) # 대비를 높인 이미지 생성
 #display(contrasted, 'Contrasted original') # 대비를 높인 이미지 출력
 #cv2.imwrite('contrasted.png', contrasted) # 대비를 높인 이미지 출력 
-#ndvi = calc_ndvi(contrasted) # NDVI 계산
+ndvi = calc_ndvi(contrasted) # NDVI 계산
 #display(ndvi, 'NDVI') # NDVI 출력
-#ndvi_contrasted = contrast_stretch(ndvi) # NDVI 대비를 높임
-display(ndvi_contrasted, 'NDVI Contrasted') # NDVI 대비를 높인 이미지 출력
-cv2.imwrite('ndvi_contrasted.png', ndvi_contrasted) # NDVI 이미지 저장
+ndvi_contrasted = contrast_stretch(ndvi) # NDVI 대비를 높임
+#display(ndvi_contrasted, 'NDVI Contrasted') # NDVI 대비를 높인 이미지 출력
+#cv2.imwrite('ndvi_contrasted.png', ndvi_contrasted) # NDVI 이미지 저장
 color_mapped_prep = ndvi_contrasted.astype(np.uint8) # NDVI 이미지를 8비트로 변환
 color_mapped_image = cv2.applyColorMap(color_mapped_prep, fastiecm) # NDVI 이미지에 컬러맵 적용
 display(color_mapped_image, 'Color mapped') # 컬러맵이 적용된 NDVI 이미지 출력
