@@ -1,5 +1,11 @@
 # Capture plant health with NDVI and Raspberry Pi
 
+# 순서
+1. 라즈베리파이로 사진을 촬영한다.
+2. 촬영한 사진은 images폴더에 넣는다.
+3. ndvi_constrast.py 까지 진행한다.
+4. ndvi_mapping.py를 진행한다
+
 # [Camera Module 3](https://www.raspberrypi.com/documentation/computers/camera_software.html#rpicam-hello) 
 - rpicam-apps을 쉽게 사용할 수 있다. 
 ```bash
