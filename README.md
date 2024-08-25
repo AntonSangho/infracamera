@@ -12,3 +12,4 @@ rpicam-hello
 
 ## Reference 
 - [Project Rasberry pi](https://projects.raspberrypi.org/en/projects/astropi-ndvi/0) 
+- [What’s that blue thing doing here?]https://www.raspberrypi.com/news/whats-that-blue-thing-doing-here/
