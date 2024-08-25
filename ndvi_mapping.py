@@ -2,14 +2,14 @@ import cv2
 import numpy as np
 from fastiecm import fastiecm
 
-original = cv2.imread('/home/anton/Projects/infracamera/images/park.png') # 이미지 불러오기
-
+#original = cv2.imread('/home/anton/Projects/infracamera/images/park.png') # 이미지 불러오기
+original = cv2.imread('/home/anton/Projects/infracamera/images/test_filter.png') # 이미지 불러오기
 def display(image, image_name): 
     image = np.array(image, dtype=float)/float(255) # array로 변환 후 0~1로 정규화 
-    shape = image.shape # 이미지 크기 저장
-    height = int(shape[0]/2) # 이미지 높이의 절반
-    width = int(shape[1]/2) # 이미지 너비의 절반
-    image = cv2.resize(image, (width, height)) # 이미지 크기 조절
+    #shape = image.shape # 이미지 크기 저장
+    #height = int(shape[0]/2) # 이미지 높이의 절반
+    #width = int(shape[1]/2) # 이미지 너비의 절반
+    #image = cv2.resize(image, (width, height)) # 이미지 크기 조절
     cv2.namedWindow(image_name) # 창을 생성 
     cv2.imshow(image_name, image) # 이미지를 창에 띄움
     cv2.waitKey(0) # 키 입력을 기다림
@@ -32,7 +32,9 @@ def calc_ndvi(image):
     b, g, r = cv2.split(image) # 이미지를 B, G, R로 분리
     bottom = (r.astype(float) + b.astype(float)) # 분모 계산
     bottom[bottom==0] = 0.01 # 0으로 나누는 것을 방지
-    ndvi = (b.astype(float) - r) / bottom # NDVI 계산
+    #ndvi = (b.astype(float) - r) / bottom 
+    # noir 카메라를 사용할때는 아래 코드 사용
+    ndvi = (b.astype(float) - b) / bottom # noir카메라는 파랜식 필터를 사용하기 때문에 파란색을 빼준다.
     return ndvi
     
 display(original, 'original') # 원본 이미지 출력
