@@ -1,5 +1,15 @@
 # Capture plant health with NDVI and Raspberry Pi
 
+# 하드웨어 
+- 라즈베리파이 4 
+- 라즈베리파이 카메라 모듈 2 NoIR
+- 라즈베리파이용 파워아답터
+
+# 개발환경 
+- 라즈베리파이 OS: 32-bit Bookworm with the Raspberry Pi Desktop
+
+
+
 # 순서
 1. 라즈베리파이로 사진을 촬영한다.
 2. 촬영한 사진은 images폴더에 넣는다.
