@@ -2,4 +2,5 @@ venv/
 *.png
 images/*.png
 images/*.jpg
+*.mp4
 
