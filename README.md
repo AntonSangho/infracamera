@@ -6,11 +6,34 @@
 - 라즈베리파이용 파워아답터
 
 # 개발환경 
-- 라즈베리파이 OS: 32-bit Bookworm with the Raspberry Pi Desktop
+- 라즈베리파이 OS: 64-bit Bookworm with the Raspberry Pi Desktop
+
+# Headless 모드로 라즈베리파이 설정
+
+1. ssh 설정
+```bash
+sudo raspi-config
+```
+2. Advanced Options -> SSH -> Enable
+
+3. [raspbserry pi connect로 원격 접속](https://connect.raspberrypi.com/devices) 
+
+# [사진 촬영](https://www.raspberrypi.com/documentation/computers/camera_software.html#via-cron) 
+1. timelapse.sh 만들기 
+```bash
+#!/bin/bash
+DATE=$(date +"%Y-%m-%d_%H%M")
+rpicam-still -o /home/<username>/timelapse/$DATE.jpg
+```
+2. crontab -e 로 30분 단위로 timelaps.sh 실행하도록 정하기 
+```bash
+*/30 * * * * /home/<username>/timelapse.sh 2>&1
+```
 
 
 
-# 순서
+
+# 후처리순서
 1. 라즈베리파이로 사진을 촬영한다.
 2. 촬영한 사진은 images폴더에 넣는다.
 3. ndvi_constrast.py 까지 진행한다.
