@@ -34,6 +34,19 @@ chomd +x timelase.sh
 */30 * * * * /home/<username>/infracamera/timelapse.sh 2>&1
 ```
 
+# [WiFi 설정](https://youtu.be/QjSn33jbzFM?feature=shared)
+1. nmcli의 ui버전인 nmtui 실행
+```bash
+nmtui
+```
+2. Edit a connection
+3. Add
+4. SSID 입력
+5. Security를 WPA & WPA2 Personal로 변경
+6. Password 입력
+
+
+
 
 
 
