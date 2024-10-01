@@ -23,11 +23,11 @@ sudo raspi-config
 ```bash
 #!/bin/bash
 DATE=$(date +"%Y-%m-%d_%H%M")
-rpicam-still -o /home/<username>/timelapse/$DATE.jpg
+rpicam-still -o /home/<username>/infracamera/images/$DATE.jpg
 ```
 2. crontab -e 로 30분 단위로 timelaps.sh 실행하도록 정하기 
 ```bash
-*/30 * * * * /home/<username>/timelapse.sh 2>&1
+*/30 * * * * /home/<username>/infracamera/timelapse.sh 2>&1
 ```
 
 
