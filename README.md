@@ -9,7 +9,7 @@
 - 라즈베리파이 OS: 64-bit Bookworm with the Raspberry Pi Desktop
 
 # Headless 모드로 라즈베리파이 설정
-
+## 원격접속 설정
 1. ssh 설정
 ```bash
 sudo raspi-config
@@ -17,6 +17,13 @@ sudo raspi-config
 2. Advanced Options -> SSH -> Enable
 
 3. [raspbserry pi connect로 원격 접속](https://connect.raspberrypi.com/devices) 
+
+## UART 연결 설정
+1. raspi-config 실행
+```bash
+sudo raspi-config
+```
+2. Interface Options -> Serial Port -> No -> Yes
 
 # [사진 촬영](https://www.raspberrypi.com/documentation/computers/camera_software.html#via-cron) 
 1. timelapse.sh 만들기 
