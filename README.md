@@ -64,6 +64,68 @@ rpicam-hello
 # [fastiecm.py](./fastiecm.py)  
 - 어두운 픽셀을 가져와 흰색으로 만들기
 - 원래 픽셀이 밝을 수록 스펙트럼을 따라 색상이 더 멀리 이동합니다. 따라서 어두은 픽셀은 파란색이 되고 밝은 흰색 픽셀은 빨간색으로 변환 합니다. 
+
+# 원격 파일시스템 - filebrowser
+
+## 설 치 및 자동실행
+1. filebrowser 설치 
+```bash
+curl -fsSL https://raw.githubusercontent.com/filebrowser/get/master/get.sh | bash
+```
+2. filerbrowser를 같은 네트워크에서 접속가능하도록 실행
+```bash
+filebrowser 0.0.0.0 -a 
+```
+3. 로그인하기 
+- localhost:8080으로 접속
+- ID : admin PW : admin
+
+4. filebrowser를 pm2로 자동실행하기하기
+- pm2 설치
+```bash
+sudo apt update
+sudo apt install -y nodejs npm
+sudo npm install pm2@latest -g
+```
+- filebrowser 경로 확인
+```bash
+which filebrowser
+```
+- pm2로 filebrowser 실행
+```bash
+pm2 start filebrowser --name "filebrowser" -- -r /home/[pi] -a 0.0.0.0 --port 8080
+```
+- pm2가 자동으로 실행되도록 systemd에 등록
+```bash
+sudo env PATH=$PATH:/usr/local/bin pm2 startup systemd -u [pi] --hp /home/[pi]
+```
+- pm2로 실행한 프로세스를 저장
+```bash
+pm2 save
+```
+## 사용자 관리 
+1. admin 계정으로 로그인
+2. 홈에서 users 폴더 만들기
+3. users 폴더에서 사용자 아이디 추가 예)pi1,pi2,pi3,....
+2. 설정 -> 전역설정 -> Auto create user home dir while adding new user 체크 
+3. 설정 -> 사용자관리 -> 신규
+4. 사용자 추가
+5. 사용자 이름 : ex) pi1
+6. 범위 : ex) /users/pi1
+7. 권한 해제
+- 파일이나 디렉토리 생성하기
+- 파일이나 디렉토리 삭제하기
+- 파일 편집
+- 파일 이름 변경 또는 디렉토리 이동 
+
+
+
+
+
+
+
+
+
 # log
 - 0824 : raspberry pi camera noir v2를 테스트 완료
 - 0825 : 사진은 라즈베리카메라로 촬영하고 이 촬영된 것을 컴퓨터의 opencv로 처리해야함
