@@ -26,11 +26,14 @@ sudo raspi-config
 2. Interface Options -> Serial Port -> No -> Yes
 
 # [사진 촬영](https://www.raspberrypi.com/documentation/computers/camera_software.html#via-cron) 
-1. timelapse.sh 만들기 
+1. timelapse.sh 만들기
+- 촬영시 180도 회전하여 촬영하고 파일명은 날짜로 저장
+- fileblowser의 사용자 폴더에 저장
+
 ```bash
 #!/bin/bash
 DATE=$(date +"%Y-%m-%d_%H%M")
-rpicam-still -o /home/<username>/infracamera/images/$DATE.jpg
+rpicam-still --rotation 180 -o /home/<username>/users/<fileblowser username>/$DATE.jpg
 ```
 2. timelase.sh 의 권한 변경
 ```bash
@@ -39,6 +42,12 @@ chomd +x timelase.sh
 3. crontab -e 로 30분 단위로 timelaps.sh 실행하도록 정하기 
 ```bash
 */30 * * * * /home/<username>/infracamera/timelapse.sh 2>&1
+```
+
+# 사진을 동영상으로 변환
+1. images 폴더에 있는 사진을 동영상으로 변환
+```bash
+ffmpeg -r 10 -f image2 -pattern_type glob -i './*.jpg' -s 1280x720 -vcodec libx264 timelapse.mp4
 ```
 
 # [WiFi 설정](https://youtu.be/QjSn33jbzFM?feature=shared)
@@ -124,12 +133,6 @@ pm2 save
 - 파일이나 디렉토리 삭제하기
 - 파일 편집
 - 파일 이름 변경 또는 디렉토리 이동 
-
-
-
-
-
-
 
 
 
